@@ -1,7 +1,8 @@
 package com.kk.services.landlord;
 
 import com.kk.model.LandLord;
-import org.openjdk.jmh.util.Optional;
+
+import java.util.Optional;
 
 public interface LandlordService {
 

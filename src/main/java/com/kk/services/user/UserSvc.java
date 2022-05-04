@@ -165,7 +165,7 @@ public class UserSvc implements UserService{
         else{
             final Set<UserRole> roles = new HashSet<>();
             roles.add(mergedGroup);
-            mergedUser.getUserRoles(roles);
+            mergedUser.setUserRoles(roles);
         }
         systemUserRepository.persistAndFlush(mergedUser);
         return mergedUser;

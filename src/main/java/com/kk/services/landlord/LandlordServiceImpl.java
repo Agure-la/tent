@@ -2,10 +2,10 @@ package com.kk.services.landlord;
 
 import com.kk.model.LandLord;
 import com.kk.repository.landlord.LandlordRepository;
-import org.openjdk.jmh.util.Optional;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 public class LandlordServiceImpl implements LandlordService{
 
