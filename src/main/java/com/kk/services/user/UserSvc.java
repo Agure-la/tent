@@ -1,6 +1,6 @@
 package com.kk.services.user;
 
-import com.kk.exceptions.DuplicateResourceExecption;
+import com.kk.exceptions.DuplicateResourceException;
 import com.kk.exceptions.ResourceNotFoundException;
 import com.kk.model.SystemUser;
 import com.kk.model.UserRole;
@@ -70,7 +70,7 @@ public class UserSvc implements UserService{
         final List<SystemUser> userList = admin.getUserList();
         if (userList != null && !userList.isEmpty() &&
             userList.stream().anyMatch(u -> "NO".equalsIgnoreCase(u.getDeleted()))){
-            throw new DuplicateResourceExecption();
+            throw new DuplicateResourceException();
         }
         final SystemUser user = createUser(username, email, password, phoneNo, fullName);
         return addUserToGroup(user, admin);

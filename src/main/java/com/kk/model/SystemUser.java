@@ -113,4 +113,7 @@ public class SystemUser {
     public void setUserRoles(Set<UserRole> userRoles) {
         this.userRoles = userRoles;
     }
+
+    public void setId(long l) {
+    }
 }
