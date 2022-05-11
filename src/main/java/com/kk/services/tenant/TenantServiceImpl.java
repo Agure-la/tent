@@ -1,7 +1,7 @@
 package com.kk.services.tenant;
 
 import com.kk.model.Tenant;
-import com.kk.repository.tenant.TenantRepository;
+import com.kk.repository.TenantRepository;
 import io.quarkus.runtime.StartupEvent;
 import org.hibernate.search.mapper.orm.session.SearchSession;
 import javax.enterprise.event.Observes;
@@ -58,6 +58,17 @@ public class TenantServiceImpl implements TenantService{
     public Optional<Tenant> find(int registrationNo) {
         return tenantRepository.find("RegNo = ?1 and Deleted != ?2", registrationNo, "YES").firstResultOptional();
 
+    }
+
+    @Override
+    public Tenant getAllTenant(Tenant tenant) {
+         tenantRepository.findAll();
+         return tenant;
+    }
+
+    @Override
+    public Tenant getTenantByPlots(String tenantName, String plotName) {
+        return null;
     }
 
 //    @Override

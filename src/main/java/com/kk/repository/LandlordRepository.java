@@ -1,4 +1,4 @@
-package com.kk.repository.landlord;
+package com.kk.repository;
 
 import com.kk.model.LandLord;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;

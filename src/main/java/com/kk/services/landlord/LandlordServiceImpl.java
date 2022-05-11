@@ -1,7 +1,7 @@
 package com.kk.services.landlord;
 
 import com.kk.model.LandLord;
-import com.kk.repository.landlord.LandlordRepository;
+import com.kk.repository.LandlordRepository;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;

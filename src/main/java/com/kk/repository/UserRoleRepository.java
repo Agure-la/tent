@@ -1,4 +1,4 @@
-package com.kk.repository.user;
+package com.kk.repository;
 
 import com.kk.model.UserRole;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
