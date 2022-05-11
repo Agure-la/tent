@@ -18,5 +18,5 @@ public interface TenantService {
 //    Page<Tenant> fetchTenants(int page, int size);
     Tenant getAllTenant(Tenant tenant);
 
-    Tenant getTenantByPlots(String tenantName, String plotName);
+    Optional<Tenant> getTenantByPlots(String tenantName, String plotName);
 }

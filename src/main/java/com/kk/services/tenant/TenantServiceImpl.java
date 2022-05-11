@@ -67,8 +67,9 @@ public class TenantServiceImpl implements TenantService{
     }
 
     @Override
-    public Tenant getTenantByPlots(String tenantName, String plotName) {
-        return null;
+    public Optional<Tenant> getTenantByPlots(String tenantName, String plotName) {
+
+        return tenantRepository.find("TenantName = ?1 AND PlotName = ?2", tenantName, plotName).firstResultOptional();
     }
 
 //    @Override

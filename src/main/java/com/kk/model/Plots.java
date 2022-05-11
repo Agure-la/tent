@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.util.Locale;
 
 @Entity
 @Table(name = "plots")
@@ -35,6 +36,11 @@ public class Plots extends PanacheEntity {
 
     @Column(name = "NumberOfRooms")
     private String numberOfRooms;
+
+    @Column(name = "location")
+    @NotNull
+    @KeywordField(name = "location", searchable = Searchable.YES, sortable = Sortable.YES)
+    private Locale location;
 
     @Column(name = "RoomStatus")
     @KeywordField(name = "room_status", searchable = Searchable.YES, sortable = Sortable.YES)
@@ -67,6 +73,14 @@ public class Plots extends PanacheEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Locale getLocation() {
+        return location;
+    }
+
+    public void setLocation(Locale location) {
+        this.location = location;
     }
 
     public String getNumberOfRooms() {
