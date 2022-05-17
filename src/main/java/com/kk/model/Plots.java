@@ -7,10 +7,7 @@ import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextFi
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Locale;
 
@@ -46,6 +43,10 @@ public class Plots extends PanacheEntity {
     @KeywordField(name = "room_status", searchable = Searchable.YES, sortable = Sortable.YES)
     @NotNull
     private boolean roomStatus;
+
+    @ManyToMany
+    @JoinColumn(name = "LandlordId`")
+    private LandLord landLord;
 
     public Integer getPlotNo() {
         return plotNo;

@@ -6,13 +6,12 @@ import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextFi
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "tenants")
+@Table(name = "landlords")
 public class LandLord {
 
     @Id
@@ -35,6 +34,9 @@ public class LandLord {
     @Column(name = "PlotName", length = 100)
     @KeywordField(searchable = Searchable.YES)
     private String plotName;
+
+    @OneToMany(targetEntity = Plots.class, cascade = CascadeType.ALL, mappedBy = "landLord")
+    private List plots = new ArrayList();
 
     public Integer getLandlordId() {
         return landlordId;
