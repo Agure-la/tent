@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface UserService {
 
     SystemUser createUser(String username, String email, String password, String phoneNo,
-                          String fullName);
+                          String fullName) throws Exception;
 
     String hash(String hsh);
 
@@ -26,7 +26,7 @@ public interface UserService {
 
     //void removeUserFromGroup(SystemUser systemUser, UserRole userRole);
 
-    SystemUser createDefaultUser(String username, String email, String password, String phoneNo, String fullName);
+    SystemUser createDefaultUser(String username, String email, String password, String phoneNo, String fullName) throws Exception;
 
     Optional<SystemUser> findUser(String usernameOrEmail, String password);
 

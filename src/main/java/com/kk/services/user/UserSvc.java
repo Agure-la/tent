@@ -41,7 +41,7 @@ public class UserSvc implements UserService{
     @Override
     @Transactional
     public SystemUser createUser(String username, String email, String password,
-                                 String phoneNo, String fullName) {
+                                 String phoneNo, String fullName) throws Exception {
         final SystemUser user  = new SystemUser();
         user.setUsername(username);
         user.setEmail(email);
@@ -54,13 +54,13 @@ public class UserSvc implements UserService{
             return user;
         }catch (DuplicateMappingException | ConstraintViolationException e){
             //logger.error("Unable to persist", e);
-            throw new DuplicateMappingException(user);
+            throw new Exception(user.toString(),new Throwable(e));
         }
     }
 
     @Override
     public SystemUser createDefaultUser(String username, String email, String password,
-                                        String phoneNo, String fullName) {
+                                        String phoneNo, String fullName) throws Exception {
         Optional<UserRole> adminRole = userRoleRepository.findByName("admin");
         UserRole admin;
         if (adminRole.isEmpty()) {
