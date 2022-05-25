@@ -101,7 +101,7 @@ public class LocalLoginService implements LoginService{
         }catch (ParseException e){
             throw new MissingRefreshTokenException(refreshToken);
         }catch (Throwable e){
-            logger.error("Unexpected error", e);
+            //logger.error("Unexpected error", e);
             throw new UnknownError(e);
         }
     }
@@ -113,9 +113,6 @@ public class LocalLoginService implements LoginService{
             token = parser.parse(refreshToken);
             String username = token.getClaim("tents.user.username");
             redisClient.del(List.of(BASE + "access:" + username, BASE + "refresh:" + username));
-        }
-        catch (ParseException e){
-            logger.error("Missing refreshToken");
         } catch (io.smallrye.jwt.auth.principal.ParseException e) {
             e.printStackTrace();
         }
