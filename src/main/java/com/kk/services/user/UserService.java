@@ -3,12 +3,12 @@ package com.kk.services.user;
 import com.kk.model.SystemUser;
 import com.kk.model.UserRole;
 
+import com.kk.resource.requests.CreateUserRequestModel;
 import java.util.Optional;
 
 public interface UserService {
 
-    SystemUser createUser(String username, String email, String password, String phoneNo,
-                          String fullName) throws Exception;
+    SystemUser createUser(CreateUserRequestModel requestModel) throws Exception;
 
     String hash(String hsh);
 

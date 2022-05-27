@@ -31,7 +31,6 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class LocalLoginService implements LoginService{
 
-    @Inject
     Logger logger;
     @Inject
     UserService userService;
@@ -41,7 +40,7 @@ public class LocalLoginService implements LoginService{
     @Inject
     //used for caching and as temporary database
     RedisClient redisClient;
-    @ConfigProperty(name = "tents.id")
+    @ConfigProperty(name = "tents.id", defaultValue = "2334556")
     String tenantsSystemId;
     @ConfigProperty(name = "login_service.local.access_token_expiry", defaultValue = "900")
     Duration accessTokenExpiry;
@@ -86,9 +85,9 @@ public class LocalLoginService implements LoginService{
         try {
             token = parser.parse(refreshToken);
             String username = token.getClaim("samis.user.username");
-            if (!redisClient.exists(List.of(BASE + "refresh:" + username)).toBolean()){
-                throw new MissingRefreshTokenException(refreshToken);
-            }
+//            if (!redisClient.exists(List.of(BASE + "refresh:" + username)).toBolean()){
+//                throw new MissingRefreshTokenException(refreshToken);
+//            }
             final SystemUser user = userService.findUser(username)
                     .orElseThrow(() -> new MissingUserException(username));
             final String accessToken = buildAccessJwt(user, accessTokenExpiry);
@@ -98,9 +97,7 @@ public class LocalLoginService implements LoginService{
             redisClient.setex(BASE + "refresh:" + username, refreshJwt,
                     "" + refreshTokenExpiry.toSeconds());
             return new Token(accessToken, accessTokenExpiry, refreshJwt, refreshTokenExpiry);
-        }catch (ParseException e){
-            throw new MissingRefreshTokenException(refreshToken);
-        }catch (Throwable e){
+        } catch (Throwable e){
             //logger.error("Unexpected error", e);
             throw new UnknownError(e);
         }

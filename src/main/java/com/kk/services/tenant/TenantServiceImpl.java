@@ -16,16 +16,8 @@ public class TenantServiceImpl implements TenantService{
    // private static final Logger logger = Logger.getLogger(TenantServiceImpl.class);
     @Inject
     TenantRepository tenantRepository;
-    @Inject
-    SearchSession searchSession;
 
-    @Transactional
-    void onStart(@Observes StartupEvent ev) throws InterruptedException {
-        if(tenantRepository.count() > 0) {
-            searchSession.massIndexer()
-                    .startAndWait();
-        }
-    }
+
 
     @Override
     @Transactional

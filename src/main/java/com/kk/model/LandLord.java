@@ -16,27 +16,28 @@ public class LandLord {
 
     @Id
     @Column(name = "LandlordId")
-    @GenericField(name = "landlord_id", searchable = Searchable.YES, sortable = Sortable.YES)
+    //@GenericField(name = "landlord_id", searchable = Searchable.YES, sortable = Sortable.YES)
     private Integer landlordId;
 
     @Column(name = "Name")
-    @FullTextField(analyzer = "english")
-    @KeywordField(name = "name_search", sortable = Sortable.YES, searchable = Searchable.YES)
+    //@FullTextField(analyzer = "english")
+    //@KeywordField(name = "name_search", sortable = Sortable.YES, searchable = Searchable.YES)
     private String landlordName;
 
     @Column(name = "PhoneNo", length = 100)
     private String phoneNo;
 
     @Column(name = "Email", length = 100)
-    @KeywordField(searchable = Searchable.YES)
+    //@KeywordField(searchable = Searchable.YES)
     private String email;
 
     @Column(name = "PlotName", length = 100)
-    @KeywordField(searchable = Searchable.YES)
+    //@KeywordField(searchable = Searchable.YES)
     private String plotName;
 
     @OneToMany(targetEntity = Plots.class, cascade = CascadeType.ALL, mappedBy = "landLord")
-    private List plots = new ArrayList();
+    private List<Plots> plots;
+
 
     public Integer getLandlordId() {
         return landlordId;
@@ -72,5 +73,17 @@ public class LandLord {
 
     public void setPlotName(String plotName) {
         this.plotName = plotName;
+    }
+
+    public void setLandlordId(Integer landlordId) {
+        this.landlordId = landlordId;
+    }
+
+    public List<Plots> getPlots() {
+        return plots;
+    }
+
+    public void setPlots(List<Plots> plots) {
+        this.plots = plots;
     }
 }

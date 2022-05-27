@@ -12,7 +12,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Indexed(routingBinder = @RoutingBinderRef())
+//@Indexed(routingBinder = @RoutingBinderRef())
 @Table(name = "portal_users", uniqueConstraints = {
         @UniqueConstraint(name = "username_cx", columnNames = "username"),
         @UniqueConstraint(name = "email_cx" , columnNames = "email"),
@@ -31,27 +31,25 @@ public class SystemUser {
     private String username;
 
     @Column(name = "full_name", length = 255)
-    @FullTextField(analyzer = "english", searchable = Searchable.YES)
+    //@FullTextField(analyzer = "english", searchable = Searchable.YES)
     private String fullName;
 
     @Column(name = "password")
     private String password;
 
     @Column(name = "email", length = 30)
-    @KeywordField(sortable = Sortable.YES, searchable = Searchable.YES)
+    //@KeywordField(sortable = Sortable.YES, searchable = Searchable.YES)
     private String email;
 
     @Column(name = "phone_no", length = 20)
-    @KeywordField(sortable = Sortable.YES, searchable = Searchable.YES)
+    //@KeywordField(sortable = Sortable.YES, searchable = Searchable.YES)
     private String phoneNo;
 
     @Column(name = "Deleted", length = 5, columnDefinition = "VARCHAR(5) DEFAULT 'NO'")
-    @KeywordField(sortable = Sortable.YES, searchable = Searchable.YES)
+    //@KeywordField(sortable = Sortable.YES, searchable = Searchable.YES)
     private String Deleted;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "portal_user_userroles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<UserRole> userRoles;
 
     public Long getId() {

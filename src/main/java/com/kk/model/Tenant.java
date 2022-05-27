@@ -15,33 +15,33 @@ import org.hibernate.search.engine.backend.types.Searchable;
 import java.time.LocalDateTime;
 
 @Entity
-@Indexed(routingBinder = @RoutingBinderRef)
+//@Indexed(routingBinder = @RoutingBinderRef)
 @Table(name= "plot_tenants")
 public class Tenant {
     @Id
     @Column(name = "RegNo")
-    @GenericField(name= "reg_no", searchable= Searchable.YES, sortable = Sortable.YES)
+    //@GenericField(name= "reg_no", searchable= Searchable.YES, sortable = Sortable.YES)
     private Integer registrationNo;
 
     @Column(name = "TenantName", nullable = false, length = 200)
-    @FullTextField(analyzer = "english")
-    @KeywordField(name = "tenant_name", sortable = Sortable.YES)
+    //@FullTextField(analyzer = "english")
+    //@KeywordField(name = "tenant_name", sortable = Sortable.YES)
     private String tenantName;
 
     @Column(name = "RegDate")
-    @GenericField
+    //@GenericField
     private LocalDateTime regDate;
 
     @Column(name = "Gender")
-    @KeywordField(name = "gender")
+    //@KeywordField(name = "gender")
     private String gender;
 
     @Column(name = "PhoneNo", length = 100)
-    @GenericField
+    //@GenericField
     private String phoneNo;
 
     @Column(name = "PlotName", length = 50)
-    @KeywordField(name = "plot_name", searchable = Searchable.YES, sortable = Sortable.YES)
+    //@KeywordField(name = "plot_name", searchable = Searchable.YES, sortable = Sortable.YES)
     private String plotName;
 
     @Column(name = "FloorNo")
@@ -57,11 +57,11 @@ public class Tenant {
     private LocalDateTime modifiedOn;
 
     @Column(name = "Email", length = 100)
-    @KeywordField(searchable = Searchable.YES)
+    //@KeywordField(searchable = Searchable.YES)
     private String email;
 
     @Column(name = "Deleted", length = 10)
-    @KeywordField(searchable = Searchable.YES, sortable = Sortable.YES)
+    //@KeywordField(searchable = Searchable.YES, sortable = Sortable.YES)
     private String deleted;
 
     @Column(name = "DeletedOn")

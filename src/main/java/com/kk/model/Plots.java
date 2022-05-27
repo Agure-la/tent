@@ -13,16 +13,16 @@ import java.util.Locale;
 
 @Entity
 @Table(name = "plots")
-public class Plots extends PanacheEntity {
+public class Plots {
 
     @Id
     @Column(name = "PlotNo")
-    @GenericField(name = "plot_no", searchable = Searchable.YES, sortable = Sortable.YES)
+    //@GenericField(name = "plot_no", searchable = Searchable.YES, sortable = Sortable.YES)
     private Integer plotNo;
 
     @Column(name = "PlotName")
-    @FullTextField(analyzer = "english")
-    @KeywordField(name = "plot_name", searchable = Searchable.YES, sortable = Sortable.YES)
+    //@FullTextField(analyzer = "english")
+    //@KeywordField(name = "plot_name", searchable = Searchable.YES, sortable = Sortable.YES)
     private String plotName;
 
     @Column(name = "NumberOfFloors")
@@ -36,16 +36,15 @@ public class Plots extends PanacheEntity {
 
     @Column(name = "location")
     @NotNull
-    @KeywordField(name = "location", searchable = Searchable.YES, sortable = Sortable.YES)
+    //@KeywordField(name = "location", searchable = Searchable.YES, sortable = Sortable.YES)
     private Locale location;
 
     @Column(name = "RoomStatus")
-    @KeywordField(name = "room_status", searchable = Searchable.YES, sortable = Sortable.YES)
+    //@KeywordField(name = "room_status", searchable = Searchable.YES, sortable = Sortable.YES)
     @NotNull
     private boolean roomStatus;
 
-    @ManyToMany
-    @JoinColumn(name = "LandlordId`")
+    @ManyToOne
     private LandLord landLord;
 
     public Integer getPlotNo() {

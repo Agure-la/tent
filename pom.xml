@@ -9,6 +9,8 @@
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
     <failsafe.useModulePath>false</failsafe.useModulePath>
     <maven.compiler.release>11</maven.compiler.release>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
@@ -102,6 +104,12 @@
       <artifactId>okhttp</artifactId>
       <version>2.7.5</version>
     </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-test-h2</artifactId>
+      <version>2.2.3.Final</version>
+      <scope>test</scope>
+    </dependency>
 
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -119,6 +127,11 @@
           <version>RELEASE</version>
           <scope>compile</scope>
       </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <version>3.8.1</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

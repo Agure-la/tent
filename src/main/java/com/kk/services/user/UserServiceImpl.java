@@ -6,6 +6,7 @@ import com.kk.model.SystemUser;
 import com.kk.model.UserRole;
 import com.kk.repository.SystemUserRepository;
 import com.kk.repository.UserRoleRepository;
+import com.kk.resource.requests.CreateUserRequestModel;
 import io.quarkus.runtime.StartupEvent;
 import org.hibernate.DuplicateMappingException;
 import org.hibernate.search.mapper.orm.session.SearchSession;
@@ -19,35 +20,22 @@ import java.util.*;
 import java.util.logging.Logger;
 
 @Singleton
-public class UserSvc implements UserService{
+public class UserServiceImpl implements UserService{
 
-    @Inject
-    Logger logger;
-    @Inject
-    SearchSession searchSession;
     @Inject
     SystemUserRepository systemUserRepository;
     @Inject
     UserRoleRepository userRoleRepository;
 
-    @Transactional
-    void onStart(@Observes StartupEvent ev) throws InterruptedException{
-        //only reindex if we imported sone content
-        if (systemUserRepository.count() > 0){
-            logger.info("Reindexing users");
-            searchSession.massIndexer().startAndWait();
-        }
-    }
     @Override
     @Transactional
-    public SystemUser createUser(String username, String email, String password,
-                                 String phoneNo, String fullName) throws Exception {
+    public SystemUser createUser(CreateUserRequestModel requestModel) throws Exception {
         final SystemUser user  = new SystemUser();
-        user.setUsername(username);
-        user.setEmail(email);
-        user.setPhoneNo(phoneNo);
-        user.setPassword(hash(password));
-        user.setFullName(fullName);
+        user.setUsername(requestModel.getUsername());
+        user.setEmail(requestModel.getEmail());
+        user.setPhoneNo(requestModel.getPhoneNo());
+        user.setPassword(hash(requestModel.getPassword()));
+        user.setFullName(requestModel.getFullName());
         user.setDeleted("NO");
         try {
             systemUserRepository.persistAndFlush(user);
@@ -72,7 +60,13 @@ public class UserSvc implements UserService{
             userList.stream().anyMatch(u -> "NO".equalsIgnoreCase(u.getDeleted()))){
             throw new DuplicateResourceException();
         }
-        final SystemUser user = createUser(username, email, password, phoneNo, fullName);
+        CreateUserRequestModel createUserRequestModel = new CreateUserRequestModel();
+        createUserRequestModel.setEmail(email);
+        createUserRequestModel.setUsername(username);
+        createUserRequestModel.setPassword(password);
+        createUserRequestModel.setPhoneNo(phoneNo);
+        createUserRequestModel.setFullName(fullName);
+        final SystemUser user = createUser(createUserRequestModel);
         return addUserToGroup(user, admin);
     }
 
