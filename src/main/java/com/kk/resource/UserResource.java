@@ -5,6 +5,7 @@ import com.kk.resource.requests.CreateUserRequestModel;
 import com.kk.services.user.UserServiceImpl;
 
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -28,6 +29,7 @@ public class UserResource {
     }
 
     @GET
+    @RolesAllowed("Admin")
     @Path("usernameOrEmail")
     public Optional<SystemUser> getUser(@PathParam("usernameOrEmail") String usernameOrEmail, String password){
         return userServiceImpl.findUser(usernameOrEmail, password);
@@ -35,12 +37,14 @@ public class UserResource {
     }
 
     @GET
+    @RolesAllowed("Admin")
     @Path("username")
     public Optional<SystemUser> getUser(@PathParam("username") String username){
         return userServiceImpl.findUser(username);
     }
 
     @GET
+    @RolesAllowed("Admin")
     @Path("/{id}")
     public Optional<SystemUser> getUser(@PathParam("userId" ) Long userId){
         return userServiceImpl.findUser(userId);
@@ -52,6 +56,7 @@ public class UserResource {
     }
 
     @DELETE
+    @RolesAllowed("Admin")
     @Path("/{id}")
     public Optional<SystemUser> deleteUser(@PathParam("userId") long userId){
         return userServiceImpl.delete(userId);
