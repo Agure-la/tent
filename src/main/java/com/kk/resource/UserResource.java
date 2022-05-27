@@ -4,6 +4,7 @@ import com.kk.model.SystemUser;
 import com.kk.services.user.UserSvc;
 
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -24,6 +25,7 @@ public class UserResource {
     }
 
     @GET
+    @RolesAllowed("Admin")
     @Path("usernameOrEmail")
     @Produces(MediaType.APPLICATION_JSON)
     public Optional<SystemUser> getUser(@PathParam("usernameOrEmail") String usernameOrEmail, String password){
@@ -32,6 +34,7 @@ public class UserResource {
     }
 
     @GET
+    @RolesAllowed("Admin")
     @Path("username")
     @Produces(MediaType.APPLICATION_JSON)
     public Optional<SystemUser> getUser(@PathParam("username") String username){
@@ -39,6 +42,7 @@ public class UserResource {
     }
 
     @GET
+    @RolesAllowed("Admin")
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Optional<SystemUser> getUser(@PathParam("userId" ) Long userId){
@@ -52,6 +56,7 @@ public class UserResource {
     }
 
     @DELETE
+    @RolesAllowed("Admin")
     @Path("/{id}")
     public Optional<SystemUser> deleteUser(@PathParam("userId") long userId){
         return userSvc.delete(userId);

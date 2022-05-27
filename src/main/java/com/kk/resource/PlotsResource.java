@@ -3,6 +3,7 @@ package com.kk.resource;
 import com.kk.model.Plots;
 import com.kk.services.plots.PlotsServiceImpl;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -16,6 +17,7 @@ public class PlotsResource {
     PlotsServiceImpl plotsService;
 
     @POST
+    @RolesAllowed("Admin")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Plots addPlot(Plots plot){
@@ -23,6 +25,7 @@ public class PlotsResource {
     }
 
     @PUT
+    @RolesAllowed("Admin")
     @Consumes(MediaType.APPLICATION_JSON)
     public Plots editPlot(Plots plot){
         return plotsService.updatePlot(plot);
