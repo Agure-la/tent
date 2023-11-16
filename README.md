@@ -1,68 +1,81 @@
-# tenant-management-system Project
+# Quarkus API for User and Property Management
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+This Quarkus-based API project provides functionality for user management, role-based access control, token authentication, and property management. The project is built using Quarkus, MySQL, and Java, and it includes well-tested unit tests.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+## Features
 
-## Running the application in dev mode
+### User Management
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
-```
+- **Create User:**
+  - Securely create a user with hashed passwords.
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+- **User Roles:**
+  - Users have roles for fine-grained access control.
 
-## Packaging and running the application
+- **Update Password:**
+  - Users can securely update their passwords.
 
-The application can be packaged using:
-```shell script
-./mvnw package
-```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+- **Add User Role:**
+  - Assign roles to users for access control.
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+- **Add Users to User Group:**
+  - Organize users into user groups.
 
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
-```
+- **Generate Login Token:**
+  - Generate a login token for authentication.
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+- **Build Access Token:**
+  - Build access tokens for authorized requests.
 
-## Creating a native executable
+- **Logout:**
+  - Log users out of the system.
 
-You can create a native executable using: 
-```shell script
-./mvnw package -Pnative
-```
+### Admin Features
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Pnative -Dquarkus.native.container-build=true
-```
+- **Create Tenant:**
+  - Admins can create tenants for property management.
 
-You can then execute your native executable with: `./target/tenant-management-system-1.0.0-SNAPSHOT-runner`
+- **Update Tenant:**
+  - Modify tenant details.
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
+- **Delete Tenant:**
+  - Remove a tenant from the system.
 
-## Related Guides
+- **Find One Tenant:**
+  - Retrieve details of a specific tenant.
 
-- Hibernate ORM ([guide](https://quarkus.io/guides/hibernate-orm)): Define your persistent model with Hibernate ORM and JPA
-- SmallRye OpenAPI ([guide](https://quarkus.io/guides/openapi-swaggerui)): Document your REST APIs with OpenAPI - comes with Swagger UI
-- RESTEasy Reactive ([guide](https://quarkus.io/guides/resteasy-reactive)): A JAX-RS implementation utilizing build time processing and Vert.x. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it.
+- **See All Tenants:**
+  - Fetch a list of all tenants.
 
-## Provided Code
+- **Get Tenant by Plot:**
+  - Retrieve tenant information based on the assigned plot.
 
-### Hibernate ORM
+- **Create Plots:**
+  - Admins can create plots for property management.
 
-Create your first JPA entity
+- **Update Plots:**
+  - Modify plot details.
 
-[Related guide section...](https://quarkus.io/guides/hibernate-orm)
+- **See Plots and Vacant Rooms:**
+  - Retrieve a list of all plots and vacant rooms.
 
-### RESTEasy Reactive
+## Technologies Used
 
-Easily start your Reactive RESTful Web Services
+- [Quarkus](https://quarkus.io/) - A Kubernetes Native Java framework.
+- [MySQL](https://www.mysql.com/) - A relational database management system.
+- [JUnit](https://junit.org/) - A popular unit testing framework for Java.
 
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+## Getting Started
+
+1. Clone the repository.
+2. Set up the MySQL database and update the connection details in the application.
+3. Build and run the Quarkus application.
+
+## Running the Tests
+
+Well-tested unit tests ensure the reliability of the API endpoints. To run the tests, use the following command:
+
+```bash
+./mvnw test
+
+Contributions are welcome
