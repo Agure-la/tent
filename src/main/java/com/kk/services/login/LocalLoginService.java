@@ -1,10 +1,17 @@
 package com.kk.services.login;
 
+<<<<<<< HEAD
 import com.kk.exceptions.MissingRefreshTokenException;
 import com.kk.exceptions.MissingUserException;
 import com.kk.exceptions.UnknownError;
 import com.kk.model.SystemUser;
 import com.kk.model.UserRole;
+=======
+import com.kk.exceptions.MissingUserException;
+import com.kk.exceptions.UnknownError;
+import com.kk.entities.SystemUser;
+import com.kk.entities.UserRole;
+>>>>>>> a0d7678 (updated service class on function getAllPlots, updatePlot, createPlot)
 import com.kk.services.user.UserService;
 import io.quarkus.redis.client.RedisClient;
 import io.smallrye.jwt.auth.principal.JWTParser;
@@ -18,7 +25,10 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.transaction.Transactional;
+<<<<<<< HEAD
 import java.text.ParseException;
+=======
+>>>>>>> a0d7678 (updated service class on function getAllPlots, updatePlot, createPlot)
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;

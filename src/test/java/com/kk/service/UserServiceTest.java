@@ -1,13 +1,16 @@
 package com.kk.service;
 
 import com.kk.model.SystemUser;
+import com.kk.entities.SystemUser;
+import com.kk.repository.SystemUserRepository;
+
+import javax.inject.Inject;
 import com.kk.repository.SystemUserRepository;
 import com.kk.resource.requests.CreateUserRequestModel;
 import com.kk.services.user.UserServiceImpl;
 import io.quarkus.test.common.QuarkusTestResource;
 import io.quarkus.test.h2.H2DatabaseTestResource;
 import io.quarkus.test.junit.QuarkusTest;
-import javax.inject.Inject;
 import javax.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

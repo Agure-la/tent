@@ -1,6 +1,7 @@
 package com.kk.repository;
 
 import com.kk.model.UserRole;
+import com.kk.entities.UserRole;
 import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 
 import javax.enterprise.context.ApplicationScoped;

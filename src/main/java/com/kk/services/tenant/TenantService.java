@@ -1,6 +1,7 @@
 package com.kk.services.tenant;
 
 import com.kk.model.Tenant;
+import com.kk.entities.Tenant;
 import java.util.Optional;
 
 public interface TenantService {

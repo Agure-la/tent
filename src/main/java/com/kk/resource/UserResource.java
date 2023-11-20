@@ -1,6 +1,10 @@
 package com.kk.resource;
 
+<<<<<<< HEAD
 import com.kk.model.SystemUser;
+=======
+import com.kk.entities.SystemUser;
+>>>>>>> a0d7678 (updated service class on function getAllPlots, updatePlot, createPlot)
 import com.kk.resource.requests.CreateUserRequestModel;
 import com.kk.services.user.UserServiceImpl;
 

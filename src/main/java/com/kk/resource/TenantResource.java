@@ -1,6 +1,10 @@
 package com.kk.resource;
 
+<<<<<<< HEAD
 import com.kk.model.Tenant;
+=======
+import com.kk.entities.Tenant;
+>>>>>>> a0d7678 (updated service class on function getAllPlots, updatePlot, createPlot)
 import com.kk.services.tenant.TenantServiceImpl;
 
 import javax.annotation.security.RolesAllowed;

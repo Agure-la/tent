@@ -1,6 +1,10 @@
 package com.kk.resource;
 
+<<<<<<< HEAD
 import com.kk.model.Plots;
+=======
+import com.kk.entities.Plots;
+>>>>>>> a0d7678 (updated service class on function getAllPlots, updatePlot, createPlot)
 import com.kk.services.plots.PlotsServiceImpl;
 
 import javax.annotation.security.RolesAllowed;

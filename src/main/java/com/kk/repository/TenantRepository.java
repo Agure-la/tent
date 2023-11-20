@@ -6,5 +6,5 @@ import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class TenantRepository implements PanacheRepositoryBase<Tenant, Integer> {
+public class TenantRepository implements PanacheRepositoryBase<Tenant, Long> {
 }

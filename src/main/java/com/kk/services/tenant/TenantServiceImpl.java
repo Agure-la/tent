@@ -5,6 +5,11 @@ import com.kk.repository.TenantRepository;
 import io.quarkus.runtime.StartupEvent;
 import org.hibernate.search.mapper.orm.session.SearchSession;
 import javax.enterprise.event.Observes;
+import com.kk.entities.Tenant;
+import com.kk.models.request.CreateTenantRequest;
+import com.kk.models.request.UpdateTenant;
+import com.kk.repository.TenantRepository;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.transaction.Transactional;
@@ -23,6 +28,7 @@ public class TenantServiceImpl implements TenantService{
     @Transactional
     public Tenant createTenant(Tenant tenant) {
         tenant.setDeleted("NO");
+    public Tenant createTenant(CreateTenantRequest createTenantRequest) {
         tenantRepository.persist(tenant);
         return tenant;
     }
@@ -30,6 +36,7 @@ public class TenantServiceImpl implements TenantService{
     @Override
     @Transactional
     public Tenant updateTenant(Tenant tenant) {
+    public Tenant updateTenant(UpdateTenant updateTenant) {
         final Tenant updatetent = tenantRepository.getEntityManager().merge(tenant);
         tenantRepository.persist(updatetent);
         return updatetent;
@@ -43,6 +50,15 @@ public class TenantServiceImpl implements TenantService{
       if (optional.isPresent()){
           tenantRepository.update("Deleted = ?1 WHERE RegNo = ?2", "YES", registrationNo);
       }
+    public Optional<Tenant> delete(Long tenantId) {
+      final Optional<Tenant> optional = tenantRepository.find("tenantId = ?1",
+              tenantId).firstResultOptional();
+      if (optional.isPresent()){
+          tenantRepository.delete(String.valueOf(optional));
+      }
+//      if (optional.isPresent()){
+//          tenantRepository.update("Deleted = ?1 WHERE RegNo = ?2", "YES", registrationNo);
+//      }
       return optional;
     }
 
