@@ -1,17 +1,18 @@
 package com.kk.resource;
 
-<<<<<<< HEAD
-import com.kk.model.Plots;
-=======
 import com.kk.entities.Plots;
->>>>>>> a0d7678 (updated service class on function getAllPlots, updatePlot, createPlot)
+import com.kk.exceptions.ResourceNotFoundException;
+import com.kk.models.request.CreatePlot;
+import com.kk.models.request.UpdatePlotRequest;
+import com.kk.models.response.PlotResponse;
 import com.kk.services.plots.PlotsServiceImpl;
 
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.Locale;
+import javax.ws.rs.core.Response;
+import java.util.List;
 import java.util.Optional;
 
 @Path("/api/plots")
@@ -24,34 +25,67 @@ public class PlotsResource {
     @RolesAllowed("Admin")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Plots addPlot(Plots plot){
-        return plotsService.createPlot(plot);
+    public Response addPlot(@QueryParam("landLordId") String landLordId, CreatePlot createPlot){
+        try {
+            PlotResponse plotResponse = plotsService.createPlot(landLordId, createPlot);
+            return Response.status(Response.Status.CREATED).entity(plotResponse).build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
     }
 
     @PUT
     @RolesAllowed("Admin")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Plots editPlot(Plots plot){
-        return plotsService.updatePlot(plot);
+    @Path("/{plotId}")
+    public Response updatePlot(@PathParam("plotId") String plotId, UpdatePlotRequest updatePlotRequest) {
+        try {
+            PlotResponse plotResponse = plotsService.updatePlot(plotId, updatePlotRequest);
+            return Response.status(Response.Status.OK).entity(plotResponse).build();
+        } catch (ResourceNotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Optional<Plots> searchPlots(){
-        return plotsService.findPlots();
+    @RolesAllowed("Admin")
+    @Path("/{plotId}")
+    public Response getPlot(@PathParam("plotId") String plotId) {
+        try {
+            PlotResponse plotResponse = plotsService.getPlot(plotId);
+            return Response.status(Response.Status.OK).entity(plotResponse).build();
+        } catch (ResourceNotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
     }
 
     @GET
-    @Path("/{location}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Optional<Plots> searchPlotsByLocation(int plotNo,@PathParam("location") Locale location){
-        return plotsService.findPlotsByLocation(plotNo, location);
+    @RolesAllowed("Admin")
+    public Response getAllPlots() {
+        try {
+            List<PlotResponse> plotResponses = plotsService.getAllPlots();
+            return Response.status(Response.Status.OK).entity(plotResponses).build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
     }
 
-    @GET
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Optional<Plots> searchVacantRooms(@PathParam("int plotNo") int plotNo){
-        return plotsService.findVacantRooms(plotNo);
+    @DELETE
+    @RolesAllowed("Admin")
+    @Path("/{plotId}")
+    public Response deletePlot(@PathParam("plotId") Long plotId) {
+        try {
+            Optional<Plots> deletedPlot = plotsService.deletePlot(plotId);
+            if (deletedPlot.isPresent()) {
+                return Response.status(Response.Status.NO_CONTENT).build();
+            } else {
+                return Response.status(Response.Status.NOT_FOUND).entity("Plot not found with ID: " + plotId).build();
+            }
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
     }
 }

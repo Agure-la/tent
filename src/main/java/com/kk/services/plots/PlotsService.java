@@ -1,7 +1,5 @@
 package com.kk.services.plots;
 
-import com.kk.model.Plots;
-import com.kk.entities.LandLord;
 import com.kk.entities.Plots;
 import com.kk.models.request.CreatePlot;
 import com.kk.models.request.UpdatePlotRequest;
