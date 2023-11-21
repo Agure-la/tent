@@ -8,6 +8,7 @@ import com.kk.repository.LandlordRepository;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 public class LandlordServiceImpl implements LandlordService{
@@ -15,37 +16,44 @@ public class LandlordServiceImpl implements LandlordService{
     @Inject
     LandlordRepository landlordRepository;
 
+
+    public LandLord checkLandlord(String landlordId){
+        final Optional<LandLord> landLord = landlordRepository.findByLandlordId(landlordId);
+        if (landLord.isEmpty()){
+            //throw error
+        }
+
+        return landLord.get();
+    }
+
+
     @Override
     @Transactional
-    public LandLord createLandlord(LandLord landLord) {
-        landlordRepository.persist(landLord);
     public LandLord createLandlord(CreateLandlordRequest createLandlordRequest) {
-        landlordRepository.persist(createLandlordRequest);
-        return landLord;
-    }
-
-    @Override
-    @Transactional
-    public LandLord updateLandlord(LandLord landLord) {
-        //awating implementation
-        return landLord;
-    }
-
-    @Override
-    public Optional<LandLord> findLandlord(int landlordId) {
-    public LandLord updateLandlord(UpdateLandlordRequest updateLandlordRequest) {
-        //awating implementation
-        return updateLandlordRequest;
-    }
-
-    @Override
-    public Optional<LandLord> findLandlord(Long landlordId) {
         return null;
     }
 
     @Override
-    public Optional<LandLord> deleteLandlord(int landlordId) {
+    @Transactional
+    public LandLord updateLandlord(UpdateLandlordRequest updateLandlordRequest) {
+        return null;
+    }
+
+    @Override
+    @Transactional
+    public Optional<LandLord> findLandlord(Long landlordId) {
+        return Optional.empty();
+    }
+
+    @Override
+    @Transactional
     public Optional<LandLord> deleteLandlord(Long landlordId) {
+        return Optional.empty();
+    }
+
+    @Override
+    @Transactional
+    public List allLandlords() {
         return null;
     }
 }
