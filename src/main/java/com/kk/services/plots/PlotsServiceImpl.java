@@ -52,6 +52,8 @@ public class PlotsServiceImpl implements PlotsService{
 
     public PlotResponse convertToPlotResponseModel(Plots plots){
         PlotResponse plotResponseResponse = new PlotResponse();
+        plotResponseResponse.setId(plots.getId());
+        plotResponseResponse.setPlotId(plots.getPlotId());
         plotResponseResponse.setPlotName(plots.getPlotName());
         plotResponseResponse.setNumberOfFloors(plots.getNumberOfFloors());
         plotResponseResponse.setNumberOfRooms(plots.getNumberOfRooms());
