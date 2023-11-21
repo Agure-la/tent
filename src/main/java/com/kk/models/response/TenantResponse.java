@@ -114,4 +114,10 @@ public class TenantResponse {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public void setRoomId(String roomId) {
+    }
+
+    public void setUploadedOn(LocalDateTime uploadedOn) {
+    }
 }

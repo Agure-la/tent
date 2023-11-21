@@ -1,23 +1,28 @@
 package com.kk.services.tenant;
-
-import com.kk.model.Tenant;
 import com.kk.entities.Tenant;
+import com.kk.models.request.CreateTenantRequest;
+import com.kk.models.request.UpdateTenant;
+import com.kk.models.response.TenantResponse;
+
+import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 public interface TenantService {
 
-    Tenant createTenant(Tenant tenant);
+    TenantResponse createTenant(CreateTenantRequest createTenantRequest);
 
-    Tenant updateTenant(Tenant tenant);
+    @Transactional
+    TenantResponse updateTenant(String tenantId, UpdateTenant updateTenant);
 
-    Optional<Tenant> delete(int registrationNo);
+    Optional<Tenant> delete(String tenantId);
 
-    Optional<Tenant> find(int registrationNo);
+    Optional<TenantResponse> find(String tenantId);
 
 //    Page<Tenant> search(StringFilter stringFilter, PageRequest pageRequest);
 //
 //    Page<Tenant> fetchTenants(int page, int size);
-    Tenant getAllTenant(Tenant tenant);
+List getAllTenant();
 
-    Optional<Tenant> getTenantByPlots(String tenantName, String plotName);
+    Optional<TenantResponse> getTenantByPlots(String plotId);
 }

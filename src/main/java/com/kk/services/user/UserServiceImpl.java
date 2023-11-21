@@ -2,9 +2,6 @@ package com.kk.services.user;
 
 import com.kk.exceptions.DuplicateResourceException;
 import com.kk.exceptions.ResourceNotFoundException;
-<<<<<<< HEAD
-import com.kk.model.SystemUser;
-import com.kk.model.UserRole;
 import com.kk.repository.SystemUserRepository;
 import com.kk.repository.UserRoleRepository;
 import com.kk.resource.requests.CreateUserRequestModel;
@@ -13,7 +10,6 @@ import org.hibernate.DuplicateMappingException;
 import org.hibernate.search.mapper.orm.session.SearchSession;
 
 import javax.enterprise.event.Observes;
-=======
 import com.kk.entities.SystemUser;
 import com.kk.entities.UserRole;
 import com.kk.repository.SystemUserRepository;
@@ -21,16 +17,12 @@ import com.kk.repository.UserRoleRepository;
 import com.kk.resource.requests.CreateUserRequestModel;
 import org.hibernate.DuplicateMappingException;
 
->>>>>>> a0d7678 (updated service class on function getAllPlots, updatePlot, createPlot)
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
 import java.util.*;
-<<<<<<< HEAD
 import java.util.logging.Logger;
-=======
->>>>>>> a0d7678 (updated service class on function getAllPlots, updatePlot, createPlot)
 
 @Singleton
 public class UserServiceImpl implements UserService{
